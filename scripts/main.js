@@ -199,7 +199,7 @@ function getDateInput(label_name,value, on_change=null, id=""){
 }
 
 
-loadSVGElement('/resources/visa.svg').then((visa_svg)=>{
+loadSVGElement('./resources/visa.svg').then((visa_svg)=>{
 	visaContainer.appendChild(visa_svg);
 	
 	const visaFields = {};
