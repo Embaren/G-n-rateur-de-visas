@@ -1,0 +1,10 @@
+#visa_container{
+	transform: translate(25%,25%);
+	width: 100%;
+	scale: 2;
+}
+
+#inputs_container{
+	display: flex;
+	flex-direction: column;
+}
