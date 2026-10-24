@@ -3,7 +3,7 @@ const inputsContainer = document.getElementById("inputs_container");
 
 const fieldIds = ["mrz_1","mrz_2","visa_number","name","first_name","avatar","tutor","gender","nationality","birth_date","visa_type","delivery_place","delivery_date","duration","start_date","end_date","domain","entries"]
 
-const citizens=[{name:"BARBIER--RENARD Emile",id:0,initials:"BE"},{name:"DROUOT THOMAS",id:1,initials:"DT"},{name:"PAULET Antoine",id:2,initials:"PA"}];
+const citizens=[{name:"BARBIER--RENARD Emile",id:0,initials:"BE"},{name:"DROUOT Thomas",id:1,initials:"DT"},{name:"PAULET Antoine",id:2,initials:"PA"}];
 
 function getBase64Image(img) {
     const canvas = document.createElement("canvas");
@@ -292,6 +292,16 @@ loadSVGElement('./resources/visa.svg').then((visa_svg)=>{
 		}
 	}
 	
+	function onGenderInputChange(){
+		const updateMrz = onRadioInputChange('gender',2,20,1);
+		return function(g){
+			return function(e){
+				visaFields["gender"].innerHTML = g;
+				updateMrz(g)(e);
+			}
+		}
+	}
+	
 	function onTutorInputChange(){
 		return function(tutor_id){
 			return function(e){
@@ -410,7 +420,7 @@ loadSVGElement('./resources/visa.svg').then((visa_svg)=>{
 	inputs["end_date"]=getDateInput("Date de fin",visaFields["end_date"].innerHTML, onDateInputChange('end_date',2,21),"end_date_input");
 	modalities_fieldset.appendChild(inputs["end_date"].label);
 	
-	inputs["gender"]=getRadio("Sexe","gender",["M","F","A"],["M","F","A"],visaFields["gender"].innerHTML,onRadioInputChange('gender',2,20,1));
+	inputs["gender"]=getRadio("Sexe","gender",["M","F","A"],["M","F","A"],visaFields["gender"].innerHTML,onGenderInputChange());
 	identity_fieldset.appendChild(inputs["gender"].label);
 	
 	inputs["entries"]=getRadio("Entrées","entries",["1","2","MULT"],["1","2","MULT"],visaFields["entries"].innerHTML,onRadioInputChange('entries',2,30,1,-2));
